@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/glogos-org/glogos/shared/schemas/attestation.schema.json",
+  "title": "Glogos Attestation",
+  "description": "Schema for Glogos Protocol attestations (Winter Solstice Genesis 2025)",
+  "type": "object",
+  "required": ["id", "zone", "subject", "canon", "time", "refs", "proof"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "Attestation identifier - SHA-256 hash (64 hex characters)"
+    },
+    "zone": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "Zone ID of the attester - SHA-256 of public key (64 hex characters)"
+    },
+    "subject": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 hash of the content being attested (64 hex characters)"
+    },
+    "canon": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "Canon ID defining interpretation (64 hex characters)"
+    },
+    "time": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unix timestamp in seconds"
+    },
+    "refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      },
+      "description": "Referenced identifiers (attestation IDs or GLR)"
+    },
+    "proof": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{128}$",
+      "description": "Ed25519 signature (128 hex characters)"
+    }
+  },
+  "additionalProperties": false
+}

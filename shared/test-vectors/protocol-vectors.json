@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Glogos Protocol Test Vectors",
+  "description": "Shared test vectors for validating Glogos protocol implementations across languages",
+  "version": "1.0.0",
+  "vectors": {
+    "glr": {
+      "description": "GLR (Glogos Root) - SHA-256 of empty string",
+      "input": "",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "genesis_subject": {
+      "description": "Genesis subject - SHA-256 of 'From nothing, truth emerges'",
+      "input": "From nothing, truth emerges",
+      "expected": "73c14a502ae8b0e3035ab28c1f379567343c47afed318c898978474398ebe042"
+    },
+    "zone_computation": {
+      "description": "Zone ID computation from public key",
+      "public_key": "d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a",
+      "expected_zone_id": "21fe31dfa154a261626bf854046fd2271b7bed4b6abe45aa58877ef47f9721b9"
+    },
+    "canon_ids": {
+      "raw_sha256": {
+        "name": "raw:sha256:1.0",
+        "expected_id": "c794a6fc786ffc3941ec1a46065c4a94a97b6d548da7f8b717872f550619b327"
+      },
+      "timestamp": {
+        "name": "timestamp:simple:1.0",
+        "expected_id": "5c25b519c7892bf36d29a1d3cabe62cd56ec8c9438032d574cacce7e0e8e94ba"
+      },
+      "canon_definition": {
+        "name": "canon:definition:1.0",
+        "expected_id": "df4e66f5a2be89be05bae031aae388bc47ae51dedb4a863ee56228cc76f48265"
+      }
+    },
+    "refs_hash": {
+      "empty_refs": {
+        "refs": [],
+        "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "single_ref_glr": {
+        "refs": ["e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"],
+        "concat": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "expected": "cd372fb85148700fa88095e3492d3f9f5beb43e555e5ff26d95f5a6adc36f8e6"
+      },
+      "multiple_refs_unsorted": {
+        "refs": ["bbbb", "aaaa", "cccc"],
+        "sorted": ["aaaa", "bbbb", "cccc"],
+        "concat": "aaaa|bbbb|cccc",
+        "expected": "807ba4a588fb9cb2ffd1019c14bb706798fc02e32bf199b6fe863bbc1fbefd8f"
+      }
+    },
+    "genesis_derivation": {
+      "glr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "domain_separator": "glogos-genesis",
+      "seed": "ae958e20ef38261f13a52590ee631ca83d718ea62d03f22774affd43c01bb902",
+      "public_key": "c70b1f7e4ce8cb7f6f8f3984ff6fe8260469b6cf8f8f839f047ba64d894d4be8",
+      "genesis_zone_id": "db1756c17220873bcb831c2f9c197081ab0d83acf2226b819880d62ce906c010"
+    },
+    "genesis_attestation": {
+      "id": "03b426423c8a7f3fe1d1204e564efcc9415f1f5d524b3e2fe7dfa78f38756546",
+      "zone": "db1756c17220873bcb831c2f9c197081ab0d83acf2226b819880d62ce906c010",
+      "subject": "73c14a502ae8b0e3035ab28c1f379567343c47afed318c898978474398ebe042",
+      "canon": "c794a6fc786ffc3941ec1a46065c4a94a97b6d548da7f8b717872f550619b327",
+      "time": 1766329380,
+      "refs": ["e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"],
+      "proof": "9a06e9a971416bc167ce0edeb66961f1a15fac31296fb6add213e64fbb0b5172283bbb044fc5808794d2b1b42cb23b7dc8072e568cee3eb8c438294fe78b8008"
+    },
+    "attestation_id_computation": {
+      "description": "attestation_id = SHA-256(zone || subject || canon || BE64(time))",
+      "zone_hex": "db1756c17220873bcb831c2f9c197081ab0d83acf2226b819880d62ce906c010",
+      "subject_hex": "73c14a502ae8b0e3035ab28c1f379567343c47afed318c898978474398ebe042",
+      "canon_hex": "c794a6fc786ffc3941ec1a46065c4a94a97b6d548da7f8b717872f550619b327",
+      "time": 1766329380,
+      "time_be64_hex": "0000000069480c24",
+      "expected_id": "03b426423c8a7f3fe1d1204e564efcc9415f1f5d524b3e2fe7dfa78f38756546"
+    },
+    "signature_input": {
+      "description": "sign_input = attestation_id || subject || BE64(time) || refs_hash || canon (136 bytes)",
+      "attestation_id": "03b426423c8a7f3fe1d1204e564efcc9415f1f5d524b3e2fe7dfa78f38756546",
+      "subject": "73c14a502ae8b0e3035ab28c1f379567343c47afed318c898978474398ebe042",
+      "time": 1766329380,
+      "refs_hash": "cd372fb85148700fa88095e3492d3f9f5beb43e555e5ff26d95f5a6adc36f8e6",
+      "canon": "c794a6fc786ffc3941ec1a46065c4a94a97b6d548da7f8b717872f550619b327",
+      "total_bytes": 136
+    }
+  }
+}
