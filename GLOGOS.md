@@ -1,65 +1,101 @@
-# GLOGOS Protocol Specification
+# Glogos
 
-**Version:** 1.0.0-rc.1
-**Status:** DRAFT
+A Minimal Attestation Protocol
 
-## 1. Abstract
+---
 
-Glogos is a minimal Layer 0 protocol for creating decentralized, verifiable identities and attestations rooted in pure mathematics and physical entropy, without reliance on any specific blockchain, server, or centralized authority.
+## 1. Root
 
-The core axiom of Glogos is:
+**GLR** (Glogos Root) is the SHA-256 hash of the empty string:
 
-> **Identity is Content.**
-
-Specifically:
-`Identity = SHA256(Content)`
-
-## 2. Core Primitives
-
-### 2.1. The GLR (Glogos Life Root)
-
-The absolute root of the Glogos protocol is the SHA-256 hash of an empty string. This serves as the "genesis block" for the entire system.
-
-- **Value:** `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
-- **Derivation:** `SHA256("")`
-
-### 2.2. Zone (Identity)
-
-A "Zone" is a sovereign identity in Glogos. It is defined by an Ed25519 public key.
-
-- **Zone ID:** `SHA256(Ed25519_PublicKey_Bytes)`
-- **Function:** Signs attestations to prove authorship.
-
-### 2.3. Canon (Schema/Standard)
-
-A "Canon" defines the structure and semantics of a claim. It is itself a content-addressable object.
-
-- **Canon ID:** `SHA256(Canon_Definition_Bytes)`
-- **Standard Canon:** `raw:sha256:1.0` (The simplest possible claim: "This byte sequence exists")
-
-### 2.4. Attestation (Claim)
-
-An "Attestation" is a signed statement linking a Subject (content) to a Zone (identity) via a Canon (meaning), anchored by References (causality).
-
-**Structure:**
-
-```json
-{
-  "zone": "ZoneID",
-  "sub": "SubjectHash",
-  "can": "CanonID",
-  "time": UnixTimestamp,
-  "ref": ["PreviousHash1", "PreviousHash2"],
-  "sig": "Ed25519_Signature"
-}
+```
+GLR = SHA-256("")
+    = e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 ```
 
-## 3. The Genesis Ceremony
+GLR serves as the universal anchor point. Any attestation network that traces its references to GLR belongs to the Glogos family.
 
-The Glogos protocol will be officially instantiated on **December 21, 2025 at 15:03 UTC** (Winter Solstice).
+---
 
-At this moment, a "Genesis Zone" will be derived deterministically from the GLR and other entropy sources to sign the first attestation:
+## 2. Principle
 
-> **"From nothing, truth emerges"**
+```
+identity = hash(content)
+```
 
-This event anchors the protocol in time and space.
+All identifiers are derived from content through cryptographic hashing. This makes them self-certifying, content-addressed, and universally verifiable without relying on external authorities.
+
+---
+
+## 3. Attestation
+
+An attestation consists of six fields:
+
+| Field       | Type      | Meaning                                             |
+| ----------- | --------- | --------------------------------------------------- |
+| **zone**    | hash      | Who: `hash(public_key)`                             |
+| **subject** | hash      | What: `hash(content)`                               |
+| **canon**   | hash      | How to interpret: `hash(canon_name)`                |
+| **time**    | integer   | When: temporal coordinate                           |
+| **refs**    | hash[]    | From where: references to other attestations or GLR |
+| **proof**   | signature | Binding: cryptographic signature                    |
+
+---
+
+## 4. Computation
+
+### Attestation ID
+
+```
+attestation_id = hash(zone || subject || canon || time_bytes)
+```
+
+### Refs Hash
+
+```
+if refs is empty:
+    refs_hash = GLR
+else:
+    refs_hash = hash(join(sort(refs), "|"))
+```
+
+### Signature Input
+
+```
+sign_input = attestation_id || subject || time_bytes || refs_hash || canon
+```
+
+---
+
+## 5. Invariants
+
+1. `zone_id = hash(public_key)`
+2. `verify(proof, sign_input, public_key) = true`
+3. DAG is acyclic
+4. If A refs B (attestation, B ≠ GLR), then `A.time > B.time`
+5. Same inputs produce same attestation_id
+6. Implementations should warn if `A.time >> max(B.time)` (anomalous gap)
+
+---
+
+## 6. Neutrality
+
+The protocol accepts all cryptographically valid attestations. It does not evaluate content, reputation, or meaning. Semantic interpretation is the responsibility of applications built on top.
+
+Truth is determined by provenance, not authority. The refs field creates a path that gives claims their meaning.
+
+---
+
+## 7. Extensibility
+
+This document defines structure only. Specific choices — hash function, signature scheme, serialization format, optional features — are specified in genesis documents.
+
+**Hash function requirements:** collision resistance, preimage resistance, second-preimage resistance.
+
+**Signature scheme requirements:** existential unforgeability (EUF-CMA).
+
+---
+
+_This document describes a mathematical structure. It has no version number._
+
+_Realized by Le Manh Thanh_
