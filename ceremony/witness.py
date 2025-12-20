@@ -545,7 +545,20 @@ def main():
     print("STEP 4: FETCH ENTROPY WITNESSES")
     print("=" * 65)
 
-    fetched_at = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z'
+    fetched_at = datetime.now(timezone.utc).isoformat()
+
+    # Check if we're more than 1 hour past ceremony time for live mode
+    if choice == "2":
+        ceremony_time = datetime(2025, 12, 21, 15, 3, 0, tzinfo=timezone.utc)
+        current_time = datetime.now(timezone.utc)
+        time_diff = (current_time - ceremony_time).total_seconds()
+
+        if time_diff > 3600:  # More than 1 hour (3600 seconds)
+            print(f"\n⚠️  Current time is {int(time_diff / 3600)} hours past ceremony time.")
+            print("   Entropy data is no longer realtime for the ceremony.")
+            print("   Please use option [3] to verify the existing genesis artifact.")
+            print("\nExiting...")
+            return
 
     if choice == "1":
         print("\n[SIMULATION] Using mock entropy data...")
