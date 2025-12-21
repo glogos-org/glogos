@@ -1,0 +1,47 @@
+{
+  "name": "glogos-protocol",
+  "version": "1.0.0",
+  "description": "Reference implementation of the Glogos minimal attestation protocol",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "sdk/typescript/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "eslint sdk/typescript/*/src --ext .ts",
+    "format": "prettier --write \"sdk/*/src/**/*.ts\"",
+    "ceremony": "npx tsx ceremony/witness.ts",
+    "ceremony:py": "python ceremony/witness.py"
+  },
+  "keywords": [
+    "glogos",
+    "attestation",
+    "decentralized-identity",
+    "did",
+    "w3c-ccg",
+    "verifiable-credentials",
+    "sha256",
+    "ed25519"
+  ],
+  "author": "Le Manh Thanh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glogos-org/glogos.git"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ajv": "^8.17.1",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0",
+    "tsx": "^4.21.0",
+    "typedoc": "^0.25.4",
+    "typescript": "^5.3.2",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

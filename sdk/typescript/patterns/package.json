@@ -1,0 +1,31 @@
+{
+  "name": "@glogos/patterns",
+  "version": "1.0.0",
+  "description": "Reusable attestation patterns for Glogos protocol",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "glogos",
+    "attestation",
+    "patterns",
+    "witness",
+    "commit-reveal",
+    "milestone"
+  ],
+  "author": "Le Manh Thanh",
+  "license": "MIT",
+  "dependencies": {
+    "@glogos/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.27",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
