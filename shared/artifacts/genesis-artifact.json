@@ -1,0 +1,50 @@
+{
+  "_ceremony": "Winter Solstice Genesis 2025",
+  "_timestamp": "2025-12-21T15:03:00.000Z",
+  "attestation": {
+    "id": "03b426423c8a7f3fe1d1204e564efcc9415f1f5d524b3e2fe7dfa78f38756546",
+    "zone": "db1756c17220873bcb831c2f9c197081ab0d83acf2226b819880d62ce906c010",
+    "subject": "73c14a502ae8b0e3035ab28c1f379567343c47afed318c898978474398ebe042",
+    "canon": "c794a6fc786ffc3941ec1a46065c4a94a97b6d548da7f8b717872f550619b327",
+    "time": 1766329380,
+    "refs": ["e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"],
+    "proof": "9a06e9a971416bc167ce0edeb66961f1a15fac31296fb6add213e64fbb0b5172283bbb044fc5808794d2b1b42cb23b7dc8072e568cee3eb8c438294fe78b8008"
+  },
+  "witnesses": {
+    "_note": "Supplementary entropy witnesses - does NOT affect attestation",
+    "time": {
+      "gregorian": "2025-12-21T15:03:00.000Z",
+      "julian_day": 2461031.127083333,
+      "lunar": "Month 11, Day 21",
+      "vigesimal": "13.0.13.3.8",
+      "sexagesimal": "11;23,37,11;7,37,30"
+    },
+    "euler": {
+      "expression": "e^(iπ) + 1 = 0",
+      "meaning": "The most beautiful equation witnesses the genesis"
+    },
+    "entropy": {
+      "fetched_at": "2025-12-21T15:03:00.098Z",
+      "drand": {
+        "source": "drand_quicknet",
+        "chain_hash": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+        "round": 24508671,
+        "randomness": "51d0fb65ec1d2dee4307f34ac9831ce0e3815647d56349ddb271f5e1bfddeab0",
+        "signature": "ac3857a7470a3e81acfd776eb79eaed4261f3de95e7b1d6399f9cb7f7616cc3b3a3dce509c2d7429c28de082e62ec157",
+        "fetched_at": "2025-12-21T15:03:00.098Z"
+      },
+      "nist": {
+        "source": "nist_beacon",
+        "output_value": "5F5D0B1450C01370A5F8BFBDF41101F6451FE94005BC0D38238871BCE0918704FE095786BDFF11938E8A75E70EA7408824048B67EB5D1D9D241934639DC5350C",
+        "pulse_index": 1580067,
+        "fetched_at": "2025-12-21T15:03:00.098Z"
+      },
+      "bitcoin": {
+        "source": "bitcoin_block",
+        "block_hash": "0000000000000000000142a4e90d0f8b9a4ce2538a0198536bbe4498cb810ba2",
+        "block_height": 928851,
+        "fetched_at": "2025-12-21T15:03:00.098Z"
+      }
+    }
+  }
+}
