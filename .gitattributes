@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.asc text eol=lf
+*.sh text eol=lf
+*.tar.gz binary
+
+# Exception: genesis-artifact.json requires CRLF for valid GPG signature
+shared/artifacts/genesis-artifact.json text eol=crlf
