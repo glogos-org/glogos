@@ -1,0 +1,19 @@
+{
+  "attestation": {
+    "id": "8af1734f824a413096aa2257d4eeb2779b7282c03d494127ba83d34c760bedb8",
+    "zone": "e369e1d6dac8d5ab411e0a932734fb01680f78e34e077b2e5ac274cb4e6760ae",
+    "subject": "6fa7a448836e2d02f0df90d378d4d7b4482123c28d6a77237ef34d4e12052b32",
+    "canon": "c794a6fc786ffc3941ec1a46065c4a94a97b6d548da7f8b717872f550619b327",
+    "time": 1767125055,
+    "refs": [
+      "cc1d6cf21bf8b179eb64bb5fb65f5a58b243ca0748d5b671286f81826ef6a828"
+    ],
+    "proof": "c922045f53f3115dd0842e4aab09899a5716520322e6ea03a0da24398ac247892dbe0a9922467026fd632f9f82acf3d5d3e8920678c915c2132929458aad840f",
+    "_meta": {
+      "filename": "GENESIS.md",
+      "size": 15165,
+      "signed_at": "2025-12-30T20:04:15.759Z"
+    }
+  },
+  "public_key": "b596be77e29ded5cad4fe5c03e44c07697b8c17300bf3ac8303992e1f782ee47"
+}

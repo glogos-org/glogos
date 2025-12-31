@@ -1,0 +1,19 @@
+{
+  "attestation": {
+    "id": "86240184caade9383569ad31e12159e83666d15a23f8ac6ab0cddeeb97cc9e04",
+    "zone": "e369e1d6dac8d5ab411e0a932734fb01680f78e34e077b2e5ac274cb4e6760ae",
+    "subject": "17905b04717bc975387040a54590a29045c9ad31e1d3c454ba06a2bf09053af2",
+    "canon": "c794a6fc786ffc3941ec1a46065c4a94a97b6d548da7f8b717872f550619b327",
+    "time": 1767125187,
+    "refs": [
+      "fca075a7371515d93973253415c37d4ccac2c4aea7edb29c1cc16c2fa6127888"
+    ],
+    "proof": "f77369e7f31f4ac86a8b016c74d42af1ab6703cdb4f27d43715342db6aedb7c6695d5ec78603cabbcd274701e16f3fc8fadfd222dc939c87d86c8d37f2c2030a",
+    "_meta": {
+      "filename": "genesis-artifact.json",
+      "size": 2227,
+      "signed_at": "2025-12-30T20:06:27.024Z"
+    }
+  },
+  "public_key": "b596be77e29ded5cad4fe5c03e44c07697b8c17300bf3ac8303992e1f782ee47"
+}

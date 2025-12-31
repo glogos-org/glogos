@@ -1,0 +1,19 @@
+{
+  "attestation": {
+    "id": "cc1d6cf21bf8b179eb64bb5fb65f5a58b243ca0748d5b671286f81826ef6a828",
+    "zone": "e369e1d6dac8d5ab411e0a932734fb01680f78e34e077b2e5ac274cb4e6760ae",
+    "subject": "e50a3f310103d689c59386f3aabb57a5bcc07cd26cf31f9e80916cb366d64ea0",
+    "canon": "c794a6fc786ffc3941ec1a46065c4a94a97b6d548da7f8b717872f550619b327",
+    "time": 1767124997,
+    "refs": [
+      "03b426423c8a7f3fe1d1204e564efcc9415f1f5d524b3e2fe7dfa78f38756546"
+    ],
+    "proof": "7dab399aa873dc09675bd8329a70f673d571f254a3d271e944a2a1f3789b86eb5ecfa052e20a45435e05a80ea3b0ce81217a63fe21bf02f8f44668c1e4862b03",
+    "_meta": {
+      "filename": "GLOGOS.md",
+      "size": 2779,
+      "signed_at": "2025-12-30T20:03:17.401Z"
+    }
+  },
+  "public_key": "b596be77e29ded5cad4fe5c03e44c07697b8c17300bf3ac8303992e1f782ee47"
+}

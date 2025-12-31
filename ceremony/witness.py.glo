@@ -1,0 +1,19 @@
+{
+  "attestation": {
+    "id": "fca075a7371515d93973253415c37d4ccac2c4aea7edb29c1cc16c2fa6127888",
+    "zone": "e369e1d6dac8d5ab411e0a932734fb01680f78e34e077b2e5ac274cb4e6760ae",
+    "subject": "52a8c991de9b5e140d025c512d0c76ce91c03d0ed7955823d240ba678db4ad8d",
+    "canon": "c794a6fc786ffc3941ec1a46065c4a94a97b6d548da7f8b717872f550619b327",
+    "time": 1767125117,
+    "refs": [
+      "8af1734f824a413096aa2257d4eeb2779b7282c03d494127ba83d34c760bedb8"
+    ],
+    "proof": "afd8109e5a8d4caea7cfa9a58269016b6c20aebdeddea5139f225db573e0598daf481134ed722480049b1361badaed20431809267820b44a69b12022f7360c08",
+    "_meta": {
+      "filename": "witness.py",
+      "size": 25400,
+      "signed_at": "2025-12-30T20:05:17.907Z"
+    }
+  },
+  "public_key": "b596be77e29ded5cad4fe5c03e44c07697b8c17300bf3ac8303992e1f782ee47"
+}
