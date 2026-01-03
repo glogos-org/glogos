@@ -1,85 +1,182 @@
-# Glogos Protocol
+# Glogos
 
-The Layer 0 for Truth and Coordination.
+A Minimal Attestation Protocol
 
-```javascript
-identity = hash(content);
 ```
+identity = hash(content)
+```
+
+---
+
+## Attestation Structure
+
+```text
+{
+  "zone": hash(public_key),        // Who
+  "subject": hash(content),        // What
+  "canon": hash(interpretation),   // How to interpret
+  "time": unix_timestamp,          // When
+  "refs": [attestation_ids],       // Causal chain
+  "proof": ed25519_signature       // Binding
+}
+```
+
+All identifiers are self-certifying, content-addressed, and universally verifiable.
+
+---
+
+## Universal Anchor
+
+**GLR** (Glogos Root) = SHA-256("")
+
+```
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+```
+
+Any attestation tracing refs to GLR belongs to the Glogos family.
+
+---
+
+## Key Properties
+
+| Property            | Description                                             |
+| ------------------- | ------------------------------------------------------- |
+| **Self-certifying** | zone = hash(public_key)                                 |
+| **Causal ordering** | refs chain provides ordering without external witnesses |
+| **No consensus**    | Simpler than blockchain                                 |
+| **DID interop**     | did:glogos ↔ did:key via alsoKnownAs                    |
+
+---
+
+## DID Interoperability
+
+Glogos zones map to W3C Decentralized Identifiers:
+
+```json
+{
+  "id": "did:glogos:<zone_id>",
+  "alsoKnownAs": ["did:key:z6Mk..."]
+}
+```
+
+Same public key, different encoding — interoperable with did:key ecosystem.
 
 ---
 
 ## Specification
 
-- **[GLOGOS.md](./GLOGOS.md)**: Core specification (abstract)
-- **[GENESIS.md](./GENESIS.md)**: Genesis specification (concrete)
-- **[genesis-artifact.json](./shared/artifacts/genesis-artifact.json)**: Official genesis data
+| Document                                                          | Description                           |
+| ----------------------------------------------------------------- | ------------------------------------- |
+| [GLOGOS.md](./GLOGOS.md)                                          | Abstract protocol (no version number) |
+| [GENESIS.md](./GENESIS.md)                                        | Winter Solstice 2025 genesis rules    |
+| [genesis-artifact.json](./shared/artifacts/genesis-artifact.json) | Official genesis data                 |
 
 ---
 
-## Quick Verify (No Install Required)
+## Attestation DAG
 
-Anyone can verify these values with just a terminal:
+```
+GLR (e3b0c442...)
+      │
+      ▼
+Genesis Attestation (03b42642...)   ← genesis-artifact.json (IS the attestation)
+      │
+      ▼
+GLOGOS.md (cc1d6cf2...)             ← GLOGOS.md.glo
+      │
+      ▼
+GENESIS.md (8af1734f...)            ← GENESIS.md.glo
+      │
+      ▼
+witness.py (fca075a7...)            ← ceremony/witness.py.glo
+      │
+      ▼
+genesis-artifact.json (86240184...) ← shared/artifacts/genesis-artifact.json.glo
+```
+
+| File                                                              | Attestation                                                               |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [genesis-artifact.json](./shared/artifacts/genesis-artifact.json) | Genesis Attestation itself                                                |
+| [GLOGOS.md](./GLOGOS.md)                                          | [GLOGOS.md.glo](./GLOGOS.md.glo)                                          |
+| [GENESIS.md](./GENESIS.md)                                        | [GENESIS.md.glo](./GENESIS.md.glo)                                        |
+| [witness.py](./ceremony/witness.py)                               | [witness.py.glo](./ceremony/witness.py.glo)                               |
+| [genesis-artifact.json](./shared/artifacts/genesis-artifact.json) | [genesis-artifact.json.glo](./shared/artifacts/genesis-artifact.json.glo) |
+
+---
+
+## Example Zone
+
+See [shared/zones/](./shared/zones/) for zone examples:
+
+| File                                                        | Description      |
+| ----------------------------------------------------------- | ---------------- |
+| [zone-1-identity.json](./shared/zones/zone-1-identity.json) | Zone metadata    |
+| [zone-1-did.json](./shared/zones/zone-1-did.json)           | W3C DID Document |
+
+---
+
+## Quick Verify
 
 ```bash
-# 1. GLR (Glogos Root) - SHA-256 of empty string
+# GLR - SHA-256 of empty string
 printf '' | sha256sum
-# Expected: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+# e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
-# 2. Standard Canon - SHA-256 of "raw:sha256:1.0"
-printf 'raw:sha256:1.0' | sha256sum
-# Expected: c794a6fc786ffc3941ec1a46065c4a94a97b6d548da7f8b717872f550619b327
+# Genesis subject - SHA-256 of motto
+printf 'From nothing, truth emerges' | sha256sum
+# 73c14a502ae8b0e3035ab28c1f379567343c47afed318c898978474398ebe042
 ```
 
 ---
 
-## Run Full Verification
+## Run Verification
 
 ```bash
-# Clone and install
 git clone https://github.com/glogos-org/glogos.git
 cd glogos
-pnpm install
-
-# Build and test
-pnpm build
-pnpm test
+pnpm install && pnpm build && pnpm test
 ```
 
 ---
 
-### Run Implementation
+## Related
 
-```bash
-# Python (Requires: pip install pynacl)
-pnpm ceremony:py
-
-# TypeScript (Recommended)
-pnpm ceremony
-```
+| Repo                                             | Description                      |
+| ------------------------------------------------ | -------------------------------- |
+| [glo-cli](https://github.com/glogos-org/glo-cli) | CLI tool (`pip install glo-cli`) |
 
 ---
 
 ## Project Structure
 
-- **[GLOGOS.md](./GLOGOS.md)**: The abstract Layer 0 protocol specification.
-- **[GENESIS.md](./GENESIS.md)**: Concrete rules and constants for the genesis event.
-- **[ceremony/](./ceremony/)**: Cross-language script implementations for the genesis ritual.
-  - `witness.ts`: Primary TypeScript ritual implementation.
-  - `witness.py`: Reference Python ritual implementation.
-- **[sdk/typescript/](./sdk/typescript/)**:
-  - `core`: Pure cryptographic primitives and protocol logic.
-  - `patterns`: High-level usage patterns (Commit-Reveal, Milestones).
-- **[shared/](./shared/)**: Source of truth for schemas, test vectors, and official artifacts.
+- **GLOGOS.md** — Abstract Layer 0 specification (sealed)
+- **GENESIS.md** — Concrete genesis rules (sealed)
+- **ceremony/** — Genesis ceremony scripts (Python primary, TypeScript reference)
+- **sdk/** — Example implementations for developers
+- **shared/** — Schemas, test vectors, artifacts
+
+---
+
+## References
+
+| Standard                                                                 | Description               |
+| ------------------------------------------------------------------------ | ------------------------- |
+| [FIPS 180-4](https://csrc.nist.gov/publications/detail/fips/180/4/final) | SHA-256 specification     |
+| [RFC 8032](https://datatracker.ietf.org/doc/html/rfc8032)                | Ed25519 signature scheme  |
+| [RFC 8259](https://datatracker.ietf.org/doc/html/rfc8259)                | JSON format               |
+| [W3C DID Core](https://www.w3.org/TR/did-core/)                          | Decentralized Identifiers |
+| [W3C VC](https://www.w3.org/TR/vc-data-model/)                           | Verifiable Credentials    |
+| [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119)                | Requirement keywords      |
 
 ---
 
 ## License
 
-- Documentation: CC-BY-4.0
-- Code: MIT
+- Documentation: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
+- Code: [MIT](https://opensource.org/license/MIT)
 
 ---
 
-**Genesis: December 21, 2025, 15:03 UTC**
+**Genesis: 2025-12-21T15:03:00 UTC (Winter Solstice)**
 
-"From nothing, truth emerges"
+_"From nothing, truth emerges"_
