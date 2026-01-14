@@ -1,0 +1,40 @@
+{
+  "name": "nobel-demos",
+  "version": "1.0.0",
+  "description": "Reference examples and demonstrations for Glogos protocol",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "all": "node run-all-use-cases.mjs",
+    "art-provenance": "tsx use-cases/art-provenance.ts",
+    "carbon": "tsx use-cases/carbon-credit.ts",
+    "commitment": "tsx use-cases/commitment-device.ts",
+    "constitution": "tsx use-cases/constitution.ts",
+    "data-integrity": "tsx use-cases/data-integrity.ts",
+    "employment": "tsx use-cases/employment.ts",
+    "federation": "tsx use-cases/federation.ts",
+    "forgotten": "tsx use-cases/right-to-be-forgotten.ts",
+    "game": "tsx use-cases/game-theory.ts",
+    "gns": "tsx use-cases/gns-resolver.ts",
+    "impact": "tsx use-cases/impact-evaluation.ts",
+    "liquidity": "tsx use-cases/liquidity-pool.ts",
+    "matching": "tsx use-cases/matching-market.ts",
+    "mechanism": "tsx use-cases/mechanism-design.ts",
+    "peer-review": "tsx use-cases/peer-review.ts",
+    "prediction": "tsx use-cases/prediction-market.ts",
+    "principal": "tsx use-cases/principal-agent.ts",
+    "public": "tsx use-cases/public-goods.ts",
+    "rotation": "tsx use-cases/key-rotation.ts",
+    "supply-chain": "tsx use-cases/supply-chain.ts",
+    "sybil": "tsx use-cases/sybil-resistance.ts",
+    "transaction": "tsx use-cases/transaction.ts"
+  },
+  "dependencies": {
+    "@glogos/core": "workspace:*",
+    "@glogos/patterns": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

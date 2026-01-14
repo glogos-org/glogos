@@ -1,0 +1,38 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "paths": {
+      "@glogos/core": ["../sdk/typescript/core/src/index.ts"],
+      "@glogos/patterns": ["../sdk/typescript/patterns/src/index.ts"]
+    },
+    "rootDir": ".."
+  },
+  "include": [
+    "*.ts",
+    "use-cases/art-provenance.ts",
+    "use-cases/carbon-credit.ts",
+    "use-cases/commitment-device.ts",
+    "use-cases/constitution.ts",
+    "use-cases/data-integrity.ts",
+    "use-cases/employment.ts",
+    "use-cases/federation.ts",
+    "use-cases/game-theory.ts",
+    "use-cases/gns-resolver.ts",
+    "use-cases/impact-evaluation.ts",
+    "use-cases/key-rotation.ts",
+    "use-cases/liquidity-pool.ts",
+    "use-cases/matching-market.ts",
+    "use-cases/mechanism-design.ts",
+    "use-cases/peer-review.ts",
+    "use-cases/prediction-market.ts",
+    "use-cases/principal-agent.ts",
+    "use-cases/public-goods.ts",
+    "use-cases/right-to-be-forgotten.ts",
+    "use-cases/supply-chain.ts",
+    "use-cases/sybil-resistance.ts",
+    "use-cases/transaction.ts"
+  ]
+}

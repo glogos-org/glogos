@@ -33,6 +33,22 @@ importers:
         specifier: ^1.0.0
         version: 1.6.1(@types/node@20.19.27)
 
+  examples:
+    dependencies:
+      '@glogos/core':
+        specifier: workspace:*
+        version: link:../sdk/typescript/core
+      '@glogos/patterns':
+        specifier: workspace:*
+        version: link:../sdk/typescript/patterns
+    devDependencies:
+      tsx:
+        specifier: ^4.19.2
+        version: 4.21.0
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+
   sdk/typescript/core:
     dependencies:
       '@noble/ed25519':

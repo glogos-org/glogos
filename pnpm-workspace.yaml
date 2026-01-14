@@ -1,2 +1,4 @@
 packages:
   - 'sdk/typescript/*'
+  - 'shared/*'
+  - 'examples'

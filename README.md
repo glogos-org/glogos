@@ -139,6 +139,32 @@ pnpm install && pnpm build && pnpm test
 
 ---
 
+## PoC Use Cases (Logic Layer 0 in Action)
+
+The `examples/` directory contains functioning Proofs of Concept demonstrating Glogos across various domains:
+
+| Domain         | PoC Example                                                    | Key Concept                      |
+| :------------- | :------------------------------------------------------------- | :------------------------------- |
+| **Governance** | [Digital Constitution](./examples/use-cases/constitution.ts)   | Social Coordination Layer 0      |
+| **Governance** | [Commitment Device](./examples/use-cases/commitment-device.ts) | Causal Proofs of Credibility     |
+| **Governance** | [Sybil Resistance](./examples/use-cases/sybil-resistance.ts)   | Web of Trust / Trust Graphs      |
+| **Finance**    | [Liquidity Pool](./examples/use-cases/liquidity-pool.ts)       | Automated Liquidity Coordination |
+| **Finance**    | [Payment Transaction](./examples/use-cases/transaction.ts)     | Triple-Entry Accounting Proofs   |
+| **Science**    | [Impact Evaluation](./examples/use-cases/impact-evaluation.ts) | Public Goods & Social Impact     |
+| **Science**    | [Data Integrity](./examples/use-cases/data-integrity.ts)       | Reproducible Research Integrity  |
+| **Economy**    | [Matching Market](./examples/use-cases/matching-market.ts)     | Stable Matching / Gale-Shapley   |
+| **Economy**    | [Mechanism Design](./examples/use-cases/mechanism-design.ts)   | Incentive Compatibility          |
+| **Economy**    | [Supply Chain](./examples/use-cases/supply-chain.ts)           | Resilient Cross-border Trade     |
+
+Run all examples:
+
+```bash
+cd examples
+pnpm run all
+```
+
+---
+
 ## Related
 
 | Repo                                             | Description                      |
@@ -149,11 +175,14 @@ pnpm install && pnpm build && pnpm test
 
 ## Project Structure
 
-- **GLOGOS.md** — Abstract Layer 0 specification (sealed)
-- **GENESIS.md** — Concrete genesis rules (sealed)
-- **ceremony/** — Genesis ceremony scripts (Python primary, TypeScript reference)
-- **sdk/** — Example implementations for developers
-- **shared/** — Schemas, test vectors, artifacts
+| Component                | Description                                                       |
+| ------------------------ | ----------------------------------------------------------------- |
+| **GLOGOS.md**            | Abstract Layer 0 specification (sealed)                           |
+| **GENESIS.md**           | Concrete genesis rules (sealed)                                   |
+| [examples/](./examples/) | **Proofs of Concept** (Nobel-themed use cases: Gov, Fin, Science) |
+| [sdk/](./sdk/)           | SDK implementations for developers (TypeScript/Node.js)           |
+| [ceremony/](./ceremony/) | Genesis ceremony scripts (Python/TypeScript reference)            |
+| [shared/](./shared/)     | Universal schemas, test vectors, and artifacts                    |
 
 ---
 
