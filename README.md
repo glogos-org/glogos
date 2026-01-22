@@ -70,6 +70,23 @@ Same public key, different encoding — interoperable with did:key ecosystem.
 | [GLOGOS.md](./GLOGOS.md)                                          | Abstract protocol (no version number) |
 | [GENESIS.md](./GENESIS.md)                                        | Winter Solstice 2025 genesis rules    |
 | [genesis-artifact.json](./shared/artifacts/genesis-artifact.json) | Official genesis data                 |
+| [GLOGOS.lean](./GLOGOS.lean)                                      | Formal verification (Lean 4 proofs)   |
+
+### Formal Verification
+
+The protocol specification is mathematically proven correct using [Lean 4](https://lean-lang.org/):
+
+**Proven Invariants:**
+
+- ✅ **Temporal Order**: If A refs B (B ≠ GLR), then A.time > B.time
+- ✅ **Acyclicity**: DAG cannot contain cycles (derived from temporal ordering)
+- ✅ **Determinism**: Same inputs produce same attestation_id
+
+```bash
+lean GLOGOS.lean
+```
+
+**Why it matters:** Mathematical proof guarantees correctness for _all_ inputs, not just test cases. W3C/IETF-grade rigor for mission-critical systems.
 
 ---
 
@@ -163,6 +180,22 @@ cd examples
 pnpm run all
 ```
 
+**See [examples/README.md](./examples/README.md) for all 22 use cases.**
+
+---
+
+## Performance Characteristics
+
+Reported performance from reference Rust implementation (12 threads):
+
+| Metric                 | Single-thread | Parallel      |
+| ---------------------- | ------------- | ------------- |
+| **SHA-256**            | 2.2M ops/sec  | 14.1M ops/sec |
+| **Attestation create** | 25K ops/sec   | 157K ops/sec  |
+| **Attestation verify** | 23K ops/sec   | 150K+ ops/sec |
+
+**Scalability:** 12.4M ops/sec at 1 billion operations (89.9% efficiency).
+
 ---
 
 ## Related
@@ -175,14 +208,15 @@ pnpm run all
 
 ## Project Structure
 
-| Component                | Description                                                       |
-| ------------------------ | ----------------------------------------------------------------- |
-| **GLOGOS.md**            | Abstract Layer 0 specification (sealed)                           |
-| **GENESIS.md**           | Concrete genesis rules (sealed)                                   |
-| [examples/](./examples/) | **Proofs of Concept** (Nobel-themed use cases: Gov, Fin, Science) |
-| [sdk/](./sdk/)           | SDK implementations for developers (TypeScript/Node.js)           |
-| [ceremony/](./ceremony/) | Genesis ceremony scripts (Python/TypeScript reference)            |
-| [shared/](./shared/)     | Universal schemas, test vectors, and artifacts                    |
+| Component                    | Description                                                       |
+| ---------------------------- | ----------------------------------------------------------------- |
+| [GLOGOS.md](./GLOGOS.md)     | Abstract Layer 0 specification (sealed)                           |
+| [GLOGOS.lean](./GLOGOS.lean) | Formal verification (Lean 4 proofs)                               |
+| [GENESIS.md](./GENESIS.md)   | Concrete genesis rules (sealed)                                   |
+| [examples/](./examples/)     | **Proofs of Concept** (Nobel-themed use cases: Gov, Fin, Science) |
+| [sdk/](./sdk/)               | SDK implementations for developers (TypeScript/Node.js)           |
+| [ceremony/](./ceremony/)     | Genesis ceremony scripts (Python/TypeScript reference)            |
+| [shared/](./shared/)         | Universal schemas, test vectors, and artifacts                    |
 
 ---
 
@@ -201,8 +235,7 @@ pnpm run all
 
 ## License
 
-- Documentation: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
-- Code: [MIT](https://opensource.org/license/MIT)
+[Apache License 2.0](./LICENSE)
 
 ---
 

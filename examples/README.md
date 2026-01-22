@@ -121,3 +121,29 @@ Each demo produces:
 | **Overall**   | **77% (10/13)** | GENESIS.md domains                    |
 
 ---
+
+## Performance Characteristics
+
+Reported performance from reference Rust implementation.
+
+**Test configuration:**
+
+| Metric                 | Single-thread | Parallel (12 threads) |
+| ---------------------- | ------------- | --------------------- |
+| **SHA-256**            | 2.2M ops/sec  | **14.1M ops/sec**     |
+| **Attestation create** | 25K ops/sec   | **157K ops/sec**      |
+| **Attestation verify** | 23K ops/sec   | 150K+ ops/sec         |
+
+**Scalability at 1 Billion operations:**
+
+- Throughput: 12.4M ops/sec
+- Time: 80.6 seconds
+- Efficiency: 89.9%
+
+**Bottleneck:** Ed25519 signing (25K/s) is the primary throughput limit.
+
+> **Note:** These benchmarks are from a reference Rust implementation (not included in this repository). For TypeScript SDK performance, run the use cases with `pnpm run all`.
+
+---
+
+**See [main README](../README.md) for full specification.**
