@@ -162,6 +162,7 @@ The `examples/` directory contains functioning Proofs of Concept demonstrating G
 
 | Domain         | PoC Example                                                    | Key Concept                      |
 | :------------- | :------------------------------------------------------------- | :------------------------------- |
+| **Identity**   | [Standards Bridge](./examples/use-cases/standards-bridge.ts)   | W3C DID & VC Interoperability    |
 | **Governance** | [Digital Constitution](./examples/use-cases/constitution.ts)   | Social Coordination Layer 0      |
 | **Governance** | [Commitment Device](./examples/use-cases/commitment-device.ts) | Causal Proofs of Credibility     |
 | **Governance** | [Sybil Resistance](./examples/use-cases/sybil-resistance.ts)   | Web of Trust / Trust Graphs      |
@@ -180,7 +181,7 @@ cd examples
 pnpm run all
 ```
 
-**See [examples/README.md](./examples/README.md) for all 22 use cases.**
+**See [examples/README.md](./examples/README.md) for all use cases.**
 
 ---
 

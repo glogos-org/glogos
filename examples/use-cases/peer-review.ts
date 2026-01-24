@@ -67,7 +67,7 @@ export async function runPeerReviewDemo() {
 
   // 3. Open Peer Review
   console.log('\n3. Open Peer Review');
-  console.log('   Reviews are attestations linked to the paper. Reviewers earn reputation.');
+  console.log('   Reviews are attestations linked to the paper. Reviewers build reputation.');
 
   // Bob reviews (Critical)
   const reviewBobPayload = {

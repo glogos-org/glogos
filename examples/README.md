@@ -65,6 +65,7 @@ pnpm run game
 
 | Demo                                                          | Feature    | Description                   |
 | ------------------------------------------------------------- | ---------- | ----------------------------- |
+| [standards-bridge](./use-cases/standards-bridge.ts)           | Interop    | Wrapping W3C VCs and DIDs     |
 | [federation](./use-cases/federation.ts)                       | Cross-zone | Multi-zone attestation chains |
 | [key-rotation](./use-cases/key-rotation.ts)                   | Identity   | Cryptographic key rotation    |
 | [gns-resolver](./use-cases/gns-resolver.ts)                   | Naming     | DNS-like resolution system    |

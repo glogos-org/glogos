@@ -26,6 +26,7 @@
     "public": "tsx use-cases/public-goods.ts",
     "rotation": "tsx use-cases/key-rotation.ts",
     "supply-chain": "tsx use-cases/supply-chain.ts",
+    "standards-bridge": "tsx use-cases/standards-bridge.ts",
     "sybil": "tsx use-cases/sybil-resistance.ts",
     "transaction": "tsx use-cases/transaction.ts"
   },

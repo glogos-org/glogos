@@ -7,28 +7,29 @@
 import { execSync } from 'child_process';
 
 const demos = [
-  'employment',
+  'art-provenance',
   'carbon',
-  'constitution',
-  'matching',
   'commitment',
-  'impact',
-  'prediction',
-  'federation',
-  'principal',
-  'liquidity',
-  'mechanism',
-  'game',
-  'public',
-  'peer-review',
-  'sybil',
-  'forgotten',
-  'rotation',
-  'gns',
-  'supply-chain',
+  'constitution',
   'data-integrity',
-  'transaction',
-  'art-provenance'
+  'employment',
+  'federation',
+  'forgotten',
+  'game',
+  'gns',
+  'impact',
+  'liquidity',
+  'matching',
+  'mechanism',
+  'peer-review',
+  'prediction',
+  'principal',
+  'public',
+  'rotation',
+  'standards-bridge',
+  'supply-chain',
+  'sybil',
+  'transaction'
 ];
 
 console.log(`Running ${demos.length} demos sequentially...\n`);
